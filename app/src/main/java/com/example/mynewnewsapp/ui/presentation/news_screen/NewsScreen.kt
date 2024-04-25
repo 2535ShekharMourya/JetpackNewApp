@@ -42,7 +42,7 @@ import kotlinx.coroutines.launch
 fun NewsScreen(
     state: NewsScreenState,
     onEvent: (NewsScreenEvents) -> Unit,
-   // onReadFullStoryButtonClick: (String) -> Unit
+    onReadFullStoryButtonClick: (String) -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
@@ -72,6 +72,7 @@ fun NewsScreen(
                     BottomSheetContent(
                         article = it,
                         onReadFullStoryButtonClicked = {
+                            onReadFullStoryButtonClick(it.url)
                             coroutineScope.launch { sheetState.hide() }.invokeOnCompletion {
                                 if (!sheetState.isVisible) shouldBottomSheetShow = false
                             }

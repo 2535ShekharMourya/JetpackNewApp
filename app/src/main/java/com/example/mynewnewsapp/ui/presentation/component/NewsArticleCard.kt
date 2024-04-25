@@ -28,6 +28,7 @@ import coil.compose.AsyncImagePainter.State.Empty.painter
 import coil.request.ImageRequest
 import com.example.mynewnewsapp.R
 import com.example.mynewnewsapp.domain.model.Article
+import com.example.mynewnewsapp.util.dateFormatter
 
 @Composable
 fun NewsArticleCard(
@@ -35,6 +36,7 @@ fun NewsArticleCard(
     article: Article,
     onCordClicked: (Article) -> Unit
 ) {
+    val date=dateFormatter(article.publishedAt)
     Card(modifier = modifier.clickable { onCordClicked(article) })
     {
         Column(modifier = modifier.padding(12.dp)) {
@@ -55,7 +57,7 @@ fun NewsArticleCard(
                     style = MaterialTheme.typography.bodySmall
                 )
                 Text(
-                    text = article.publishedAt ?: "",
+                    text = date,
                     style = MaterialTheme.typography.bodySmall
                 )
             }
